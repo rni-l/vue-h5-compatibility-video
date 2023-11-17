@@ -1,7 +1,7 @@
 <!--
  * @Author: Lu
  * @Date: 2023-11-09 16:26:06
- * @LastEditTime: 2023-11-17 11:00:02
+ * @LastEditTime: 2023-11-17 17:01:23
  * @LastEditors: Lu
  * @Description: 
 -->
@@ -409,7 +409,7 @@ defineExpose({
 <template>
   <div
     :class="{
-      'c-customVideo': true,
+      'compatibility-video': true,
       fullscreen: isInlineFullScreen,
       hide: hide || (!showPoster && (hideContainer || insideFullscreen)),
     }"
@@ -418,7 +418,7 @@ defineExpose({
     }"
   >
     <div
-      class="c-customVideo-close"
+      class="compatibility-video-close"
       v-if="isInlineFullScreen"
       @click="closeFullScreen"
     >
@@ -426,7 +426,10 @@ defineExpose({
     </div>
 
     <div
-      :class="{ 'c-customVideo-wrap': true, fullscreen: isInlineFullScreen }"
+      :class="{
+        'compatibility-video-wrap': true,
+        fullscreen: isInlineFullScreen,
+      }"
       :style="{
         height: `${height}px`,
       }"
@@ -434,15 +437,19 @@ defineExpose({
       <img
         v-if="showPoster"
         v-show="!isInlineFullScreen"
-        class="c-customVideo-img"
+        class="compatibility-video-img"
         :src="poster"
       />
-      <canvas ref="refCanvas" v-if="isCanvas" class="c-customVideo-canvas" />
+      <canvas
+        ref="refCanvas"
+        v-if="isCanvas"
+        class="compatibility-video-canvas"
+      />
       <video
         v-if="!hideVideo"
         ref="refVideo"
         :class="{
-          'c-customVideo-media': true,
+          'compatibility-video-media': true,
           hide: isCanvas || hideContainer || insideFullscreen,
           canvas: isCanvas,
         }"
@@ -471,7 +478,7 @@ defineExpose({
 </template>
 
 <style scoped lang="scss">
-.c-customVideo {
+.compatibility-video {
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -510,7 +517,7 @@ defineExpose({
       transform: translate(-50%, -50%);
       top: 50%;
       left: 50%;
-      .c-customVideo-media {
+      .compatibility-video-media {
         opacity: 1;
         display: block;
         opacity: 1;

@@ -1,13 +1,24 @@
 {
   "name": "vue2-h5-compatibility-video",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
+    "build:demo": "cross-env type=demo run-p type-check build-only",
     "preview": "vite preview --port 4173",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+  },
+  "type": "module",
+  "files": ["lib"],
+  "main": "./lib/index.umd.js",
+  "module": "./lib/index.es.js",
+  "exports": {
+    ".": {
+      "import": "./lib/index.es.js",
+      "require": "./lib/index.umd.js"
+    }
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
@@ -18,6 +29,7 @@
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^11.0.0",
     "@vue/tsconfig": "^0.1.3",
+    "cross-env": "^7.0.3",
     "eslint": "^8.5.0",
     "eslint-plugin-vue": "^9.0.0",
     "lodash-es": "^4.17.21",
