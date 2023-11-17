@@ -9,8 +9,15 @@
 import { ref, computed, onMounted, defineExpose } from "vue";
 import type { PropType } from "vue";
 import { throttle } from "lodash-es";
-import { getBrowserInfo, getEmitter, log } from "common";
-import type { IScheduleParams, TWrapperVideoElement } from "common";
+import {
+  getBrowserInfo,
+  getEmitter,
+  log,
+} from "vue2-h5-compatibility-video-common";
+import type {
+  IScheduleParams,
+  TWrapperVideoElement,
+} from "vue2-h5-compatibility-video-common";
 const props = defineProps({
   hide: {
     type: Boolean as PropType<IScheduleParams["hide"]>,

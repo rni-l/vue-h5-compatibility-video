@@ -1,6 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
-import { setLog } from "common";
+import { setLog } from "vue2-h5-compatibility-video-common";
 import { getVideoComponents } from "../packages";
 import { router } from "./router";
 const { InsideVideo, FullscreenVideo } = getVideoComponents();

@@ -6,8 +6,11 @@
  * @Description:
  */
 
-import { getDefaultSchedule } from "common";
-import type { IScheduleParams, TGetWrapperComponents } from "common";
+import { getDefaultSchedule } from "vue2-h5-compatibility-video-common";
+import type {
+  IScheduleParams,
+  TGetWrapperComponents,
+} from "vue2-h5-compatibility-video-common";
 import CustomVideo from "./CustomVideo.vue";
 import type { CreateElement } from "vue";
 
@@ -45,7 +48,7 @@ const getProps = (schedule: IScheduleParams) => ({
   height: {
     default: schedule.height,
   },
-})
+});
 
 export const getVideoComponents: TGetWrapperComponents = (
   schedule = getDefaultSchedule()

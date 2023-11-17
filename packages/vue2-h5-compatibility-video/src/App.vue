@@ -9,7 +9,7 @@
 </template>
 <script lang="ts" setup>
 import { throttle } from "lodash-es";
-import { getEmitter } from "common";
+import { getEmitter } from "vue2-h5-compatibility-video-common";
 
 const touch = throttle(() => getEmitter().emit("docTouch"), 900, {
   trailing: true,

@@ -1,5 +1,5 @@
 {
-  "name": "common",
+  "name": "vue2-h5-compatibility-video-common",
   "version": "0.1.1",
   "description": "",
   "main": "lib/index.js",
