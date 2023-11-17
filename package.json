@@ -1,0 +1,26 @@
+{
+  "name": "vue-h5-compatibility-video",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "lerna": "^7.4.2"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "rni-l",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rni-l/vue-h5-compatibility-video.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rni-l/vue-h5-compatibility-video/issues"
+  },
+  "homepage": "https://github.com/rni-l/vue-h5-compatibility-video#readme"
+}
