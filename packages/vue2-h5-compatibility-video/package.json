@@ -1,6 +1,6 @@
 {
   "name": "vue2-h5-compatibility-video",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
@@ -44,7 +44,7 @@
     "vue": "^2.7.7",
     "vue-router": "3.6.5",
     "vue-tsc": "^0.38.8",
-    "vue2-h5-compatibility-video-common": "workspace:^0.1.1"
+    "vue2-h5-compatibility-video-common": "workspace:^0.1.2"
   },
   "author": "rni-l",
   "license": "ISC",
