@@ -1,7 +1,7 @@
 <!--
  * @Author: Lu
  * @Date: 2023-11-09 16:26:06
- * @LastEditTime: 2023-11-17 17:01:23
+ * @LastEditTime: 2023-11-24 11:23:17
  * @LastEditors: Lu
  * @Description: 
 -->
@@ -78,7 +78,13 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["fullscreenHide", "end"]);
+const emit = defineEmits([
+  "fullscreenHide",
+  "end",
+  "touchstart",
+  "touchend",
+  "click",
+]);
 
 const isCanPlay = ref(false);
 const isTouchedVideo = ref(false);
@@ -99,6 +105,10 @@ const refCanvas = ref();
 const isHaveVideo = computed(() => {
   return !!props.src;
 });
+
+const emitCommonEvent = (e: any, k: "touchstart" | "touchend" | "click") => {
+  emit(k, e);
+};
 
 const isVideoPlaying = (video: HTMLVideoElement) =>
   !!(
@@ -423,22 +433,22 @@ defineExpose({
     :style="{
       height: `${height}px`,
     }"
+    @click="(e) => emitCommonEvent(e, 'click')"
+    @touchstart="(e) => emitCommonEvent(e, 'touchstart')"
+    @touchend="(e) => emitCommonEvent(e, 'touchend')"
   >
     <div
       class="compatibility-video-close"
       v-if="isInlineFullScreen"
       @click="closeFullScreen"
     >
-      关闭
+      <slot name="close">关闭</slot>
     </div>
 
     <div
       :class="{
         'compatibility-video-wrap': true,
         fullscreen: isInlineFullScreen,
-      }"
-      :style="{
-        height: `${height}px`,
       }"
     >
       <img
@@ -514,6 +524,7 @@ defineExpose({
   }
 
   &-wrap {
+    height: 100%;
     &.fullscreen {
       position: absolute;
       // width: calc(100vw - #{$size} - #{$space} - #{$left});
