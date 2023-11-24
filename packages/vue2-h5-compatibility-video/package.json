@@ -1,6 +1,6 @@
 {
   "name": "vue2-h5-compatibility-video",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
