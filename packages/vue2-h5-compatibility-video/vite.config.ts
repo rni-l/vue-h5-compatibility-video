@@ -15,7 +15,8 @@ const buildPackageConfig: BuildOptions = {
     name: pkg.name,
     formats: ["es", "umd"],
     // the proper extensions will be added
-    fileName: (format: string) => `index.${format}.js`,
+    fileName: (format: string) =>
+      format === "es" ? "index.es.js" : "index.cjs",
   },
   cssCodeSplit: false,
   rollupOptions: {

@@ -14,12 +14,12 @@
   "files": [
     "lib"
   ],
-  "main": "./lib/index.umd.js",
+  "main": "./lib/index.cjs",
   "module": "./lib/index.es.js",
   "exports": {
     ".": {
       "import": "./lib/index.es.js",
-      "require": "./lib/index.umd.js"
+      "require": "./lib/index.cjs"
     }
   },
   "devDependencies": {
