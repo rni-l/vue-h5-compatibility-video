@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:41:06
- * @LastEditTime: 2023-11-27 11:17:39
+ * @LastEditTime: 2023-11-28 11:31:55
  * @LastEditors: Lu
  * @Description: 
  */
@@ -91,6 +91,10 @@ export const getSchedule = (): IVideoSchedule => {
       fullscreenParams.showPoster = true
       insideParams.showPoster = true
       insideParams.hideVideo = true
+    }
+    if (isQuark || isUC) {
+      fullscreenParams.hideContainer = true
+      fullscreenParams.showPoster = true
     }
     // if (isWeixin) {
     //   insideParams.isCanvas = true
