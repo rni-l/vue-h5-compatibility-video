@@ -1,7 +1,7 @@
 <!--
  * @Author: Lu
  * @Date: 2023-11-09 16:26:06
- * @LastEditTime: 2023-11-27 14:25:51
+ * @LastEditTime: 2023-11-28 11:16:40
  * @LastEditors: Lu
  * @Description: 
 -->
@@ -75,6 +75,10 @@ const props = defineProps({
   poster: {
     default: "",
     type: String as PropType<IScheduleParams["poster"]>,
+  },
+  mode: {
+    default: "",
+    type: String as PropType<IScheduleParams["mode"]>,
   },
 });
 
@@ -154,7 +158,10 @@ const handleVideoEnded = () => {
 const touch = () => {
   const stopNext =
     // props.onlyFullScreen || (props.hideVideo || props.showPoster);
-    props.hideVideo || props.showPoster;
+    props.hideVideo ||
+    props.showPoster ||
+    props.insideFullscreen ||
+    props.mode === "fullscreen";
   log(
     "touch sdf",
     "stopNext",
@@ -440,7 +447,7 @@ defineExpose({
     <div
       class="compatibility-video-close"
       v-if="isInlineFullScreen"
-      @click="closeFullScreen"
+      @click.stop="closeFullScreen"
     >
       <slot name="close">关闭</slot>
     </div>
@@ -592,6 +599,7 @@ defineExpose({
     height: calc($size * 0.8);
     z-index: 10;
     transform: translate3d(0);
+    white-space: nowrap;
   }
 }
 </style>
