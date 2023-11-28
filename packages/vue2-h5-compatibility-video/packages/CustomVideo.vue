@@ -1,7 +1,7 @@
 <!--
  * @Author: Lu
  * @Date: 2023-11-09 16:26:06
- * @LastEditTime: 2023-11-24 11:23:17
+ * @LastEditTime: 2023-11-27 14:25:51
  * @LastEditors: Lu
  * @Description: 
 -->
@@ -527,7 +527,6 @@ defineExpose({
     height: 100%;
     &.fullscreen {
       position: absolute;
-      // width: calc(100vw - #{$size} - #{$space} - #{$left});
       width: 100vw;
       height: calc(100vh - #{$size} - #{$space} - #{$top}) !important;
       background: #000;
@@ -536,7 +535,6 @@ defineExpose({
       top: 50%;
       left: 50%;
       .compatibility-video-media {
-        opacity: 1;
         display: block;
         opacity: 1;
         transform: translate(0, 0);
@@ -589,7 +587,7 @@ defineExpose({
     position: absolute;
     top: $top;
     right: $left;
-    color: red;
+    color: #fff;
     width: calc($size * 0.8);
     height: calc($size * 0.8);
     z-index: 10;

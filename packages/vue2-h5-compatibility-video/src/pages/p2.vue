@@ -1,7 +1,7 @@
 <!--
  * @Author: Lu
  * @Date: 2023-11-14 11:21:22
- * @LastEditTime: 2023-11-17 10:19:06
+ * @LastEditTime: 2023-11-24 16:45:09
  * @LastEditors: Lu
  * @Description: 
 -->
@@ -20,13 +20,13 @@
       <div class="txt">sdfsdf</div>
     </div>
     <div class="video-wrap">
-      <fullscreen-video
+      <!-- <fullscreen-video
         ref="refVideo2"
         :src="a2"
         :poster="poster"
         :autoplay="false"
         :height="500"
-      />
+      /> -->
       <div class="txt">sdfsdf</div>
     </div>
 

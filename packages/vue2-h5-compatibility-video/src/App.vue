@@ -3,6 +3,7 @@
     <div class="app-header">
       <router-link to="/p1">p1</router-link>
       <router-link to="/p2">p2</router-link>
+      <router-link to="/p3">p3</router-link>
     </div>
     <router-view />
   </div>

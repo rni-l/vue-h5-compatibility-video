@@ -1,14 +1,16 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:22:09
- * @LastEditTime: 2023-11-24 11:53:30
+ * @LastEditTime: 2023-11-27 14:32:45
  * @LastEditors: Lu
  * @Description:
  */
 
 import {
   getDefaultSchedule,
+  getSchedule,
   getEmitter,
+  getBrowserInfo,
 } from "vue2-h5-compatibility-video-common";
 import type {
   IScheduleParams,
@@ -54,7 +56,7 @@ const getProps = (schedule: IScheduleParams) => ({
 });
 
 export const getVideoComponents: TGetWrapperComponents = (
-  schedule = getDefaultSchedule()
+  schedule = getSchedule()
 ) => {
   return {
     InsideVideo: {
@@ -88,4 +90,4 @@ export const getVideoComponents: TGetWrapperComponents = (
   };
 };
 
-export { getEmitter };
+export { getEmitter, getBrowserInfo, getDefaultSchedule };

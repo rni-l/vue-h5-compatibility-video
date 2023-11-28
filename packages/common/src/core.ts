@@ -1,22 +1,16 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:41:06
- * @LastEditTime: 2023-11-17 11:04:46
+ * @LastEditTime: 2023-11-27 11:17:39
  * @LastEditors: Lu
  * @Description: 
  */
 import { IScheduleParams, IVideoSchedule } from './type'
 import { getBrowserInfo, log,  } from './utils'
 
+
+
 export const getDefaultSchedule = (): IVideoSchedule => {
-  const {
-    isAndroid,
-    isIos,
-    isBaidu,
-    isQuark,
-    isUC,
-  } = getBrowserInfo()
-  log('getBrowserInfo', getBrowserInfo());
   const fullscreenParams: IScheduleParams = {
     muted: true,
     playsinline: true,
@@ -60,12 +54,33 @@ export const getDefaultSchedule = (): IVideoSchedule => {
     isCanvas: false
   }
 
+  return {
+    fullscreenParams,
+    insideParams
+  }
+}
+
+
+export const getSchedule = (): IVideoSchedule => {
+  const {
+    isAndroid,
+    isIos,
+    isBaidu,
+    isQuark,
+    isUC,
+  } = getBrowserInfo()
+  log('getBrowserInfo', getBrowserInfo());
+  const {
+    fullscreenParams, insideParams
+  } = getDefaultSchedule()
+
   if (isIos) {
     if (isQuark || isBaidu || isUC) {
       insideParams.showPoster = true
       insideParams.hideVideo = true
       fullscreenParams.hideContainer = true
       fullscreenParams.showPoster = true
+      fullscreenParams.playsinline = false
     }
     if (isQuark || isUC) {
       fullscreenParams.insideFullscreen = true
