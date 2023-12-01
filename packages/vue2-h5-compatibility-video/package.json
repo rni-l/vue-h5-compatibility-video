@@ -2,7 +2,7 @@
   "name": "vue2-h5-compatibility-video",
   "version": "0.1.8",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host 0.0.0.0",
     "build": "run-p type-check build-only",
     "build:demo": "cross-env type=demo run-p type-check build-only",
     "preview": "vite preview --port 4173",

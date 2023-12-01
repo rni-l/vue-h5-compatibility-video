@@ -35,9 +35,11 @@ Vue.component("FullscreenVideo", FullscreenVideo);
 
 ```html
 <fullscreen-video
-  :src="url" :height="height"
-  :poster="poster" :autoplay="false" :loop="false"
-  :muted="false" orientation="landscape"  @click="show"
+  :src="url"
+  :height="height"
+  :poster="poster"
+  orientation="landscape"
+  @click="show"
   ref="refFullscreenVideo"
 />
 
@@ -102,26 +104,28 @@ const touch = throttle(() => getEmitter().emit("docTouch"), 900, {
 
 ### 清单
 
-| 属性                    | 说明                 | 类型    | 默认值     | 可选值                   |
-| ----------------------- | -------------------- | ------- | ---------- | ------------------------ |
-| mode                    | 视频播放模式         | string  | inside     | inside/fullscreen        |
-| muted                   | 是否禁音             | boolean | true       | true/false               |
-| playsinline             | 是否内联播放         | boolean | 按规则变化 | true/false               |
-| autoplay                | 自动播放             | boolean | 按规则变化 | true/false               |
-| loop                    | 循环播放             | boolean | 按规则变化 | true/false               |
-| preload                 | 预加载               | string  | auto       | none \| auto \| metadata |
-| controls                | 显示视频默认控件     | boolean | false      | true/false               |
-| src                     | 视频链接             | string  | -          | -                        |
-| poster                  | 封面图链接           | string  | -          | -                        |
-| height                  | 视频高度             | Number  | 1          | -                        |
-| x5VideoPlayerType       | X5 属性              | string  | h5-page    | '' \| h5-page            |
-| x5VideoPlayerFullscreen | X5 属性              | Boolean | 按规则变化 | true/false               |
-| orientation             | 视频播放方向         | string  | -          | -                        |
-| hideContainer           | 是否隐藏组件内的容器 | boolean | 按规则变化 | true/false               |
-| hideVideo               | 是否隐藏组件内的视频 | boolean | 按规则变化 | true/false               |
-| Hide                    | 是否隐藏组件         | boolean | 按规则变化 | true/false               |
-| insideFullscreen        | 是否内联全屏播放视频 | boolean | 按规则变化 | true/false               |
-| showPoster              | 是否显示封面图       | boolean | 按规则变化 | true/false               |
+| 属性                    | 说明                        | 类型    | 默认值     | 可选值                   |
+| ----------------------- | --------------------------- | ------- | ---------- | ------------------------ |
+| mode                    | 视频播放模式                | string  | inside     | inside/fullscreen        |
+| muted                   | 是否禁音                    | boolean | true       | true/false               |
+| playsinline             | 是否内联播放                | boolean | 按规则变化 | true/false               |
+| autoplay                | 自动播放                    | boolean | 按规则变化 | true/false               |
+| loop                    | 循环播放                    | boolean | 按规则变化 | true/false               |
+| preload                 | 预加载                      | string  | auto       | none \| auto \| metadata |
+| controls                | 显示视频默认控件            | boolean | false      | true/false               |
+| src                     | 视频链接                    | string  | -          | -                        |
+| poster                  | 封面图链接                  | string  | -          | -                        |
+| height                  | 视频高度                    | Number  | 1          | -                        |
+| x5VideoPlayerType       | X5 属性                     | string  | h5-page    | '' \| h5-page            |
+| x5VideoPlayerFullscreen | X5 属性                     | Boolean | 按规则变化 | true/false               |
+| orientation             | 视频播放方向                | string  | -          | -                        |
+| hideContainer           | 是否隐藏组件内的容器        | boolean | 按规则变化 | true/false               |
+| hideVideo               | 是否隐藏组件内的视频        | boolean | 按规则变化 | true/false               |
+| displayHideVideo        | 是否使用 display 隐藏视频   | boolean | 按规则变化 | true/false               |
+| translateVideo          | 是否使用 transform 隐藏视频 | boolean | 按规则变化 | true/false               |
+| Hide                    | 是否隐藏组件                | boolean | 按规则变化 | true/false               |
+| insideFullscreen        | 是否内联全屏播放视频        | boolean | 按规则变化 | true/false               |
+| showPoster              | 是否显示封面图              | boolean | 按规则变化 | true/false               |
 
 组件内的属性大部分是 `video` 的属性和特定浏览器的属性，有一小部分是为了解决浏览器兼容性问题的：`hideContainer`, `hideVideo`, `insideFullscreen`, `showPoster`
 
@@ -150,7 +154,7 @@ if (isIos) {
 
 ### 需要全屏播放的视频，在未播放的时候，只使用封面图显示
 
-需要设置 `showPoster: true` 和 `hideVideo: true`
+需要设置 `translateVideo: true`,  `showPoster: true` 和 `hideContainer: true`
 
 ```javascript
 const {
@@ -164,7 +168,7 @@ if (isIos) {
   if (isBaidu) {
     fullscreenParams.hideContainer = true
     fullscreenParams.showPoster = true
-    fullscreenParams.playsinline = false
+    fullscreenParams.translateVideo = true
   }
 }
 
@@ -248,7 +252,8 @@ export interface IScheduleParams {
     poster?: string;
     height?: number;
     hide?: boolean;
-    isCanvas?: boolean;
+    translateVideo?: boolean;
+    displayHideVideo?: boolean;
 }
 ```
 
@@ -281,7 +286,6 @@ export type getDefaultSchedule = () => ({
 ```typescript
 export type getBrowserInfo = () => ({
   isAndroid: boolean,
-  isIphone: boolean,
   isIpad: boolean,
   isIos: boolean,
   isWeixin: boolean,

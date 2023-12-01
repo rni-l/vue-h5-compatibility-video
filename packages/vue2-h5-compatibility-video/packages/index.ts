@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:22:09
- * @LastEditTime: 2023-11-27 14:32:45
+ * @LastEditTime: 2023-12-01 17:17:12
  * @LastEditors: Lu
  * @Description:
  */
@@ -52,6 +52,12 @@ const getProps = (schedule: IScheduleParams) => ({
   },
   height: {
     default: schedule.height,
+  },
+  translateVideo: {
+    default: schedule.translateVideo,
+  },
+  displayHideVideo: {
+    default: schedule.displayHideVideo,
   },
 });
 

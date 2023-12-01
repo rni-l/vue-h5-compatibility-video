@@ -1,7 +1,7 @@
 <!--
  * @Author: Lu
  * @Date: 2023-11-27 17:37:03
- * @LastEditTime: 2023-11-28 09:35:30
+ * @LastEditTime: 2023-12-01 17:37:15
  * @LastEditors: Lu
  * @Description: 
 -->
@@ -29,6 +29,24 @@
       :autoplay="false"
       :height="250"
     />
+
+    <div class="t1">{{ t2 }}</div>
+    <div class="wrap">
+      <div class="t2">{{ t1 }}</div>
+      <div class="t3">{{ t3 }}</div>
+    </div>
+
+    <div class="t1">{{ t2 }}</div>
+    <div class="wrap">
+      <div class="t2">{{ t1 }}</div>
+      <div class="t3">{{ t3 }}</div>
+    </div>
+
+    <div class="t1">{{ t2 }}</div>
+    <div class="wrap">
+      <div class="t2">{{ t1 }}</div>
+      <div class="t3">{{ t3 }}</div>
+    </div>
   </div>
 </template>
 
@@ -42,7 +60,7 @@ export default {
     return {
       poster,
       videoUrl: flowerMp4,
-      t0: "Deeersdf",
+      t0: "2Deeersdf",
       t1: "Deeer",
       t2: "Dee",
       t3: "sdfsdfxzcvzxcvassa df asd fasd fsd fsd f",
@@ -73,7 +91,6 @@ export default {
       position: absolute;
       left: 80px;
       bottom: 180px;
-      padding-right: 80px;
     }
   }
 

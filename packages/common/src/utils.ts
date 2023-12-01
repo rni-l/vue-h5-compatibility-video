@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:41:14
- * @LastEditTime: 2023-11-17 10:26:43
+ * @LastEditTime: 2023-12-01 17:31:49
  * @LastEditors: Lu
  * @Description: 
  */
@@ -17,7 +17,6 @@ export const getEmitter = () => emitter
 
 export const getBrowserInfo = () => ({
   isAndroid: Boolean(navigator.userAgent.match(/android/ig)),
-  isIphone: Boolean(navigator.userAgent.match(/iphone|ipod/ig)),
   isIpad: Boolean(navigator.userAgent.match(/ipad/ig)),
   isIos: Boolean(navigator.userAgent.match(/ipad|iphone/ig)),
   isWeixin: Boolean(navigator.userAgent.match(/MicroMessenger/ig)),

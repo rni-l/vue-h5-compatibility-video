@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:41:06
- * @LastEditTime: 2023-11-28 11:31:55
+ * @LastEditTime: 2023-12-01 17:36:30
  * @LastEditors: Lu
  * @Description: 
  */
@@ -30,7 +30,9 @@ export const getDefaultSchedule = (): IVideoSchedule => {
     poster: '',
     height: 1,
     hide: false,
-    isCanvas: false
+    isCanvas: false,
+    translateVideo: false,
+    displayHideVideo: false,
   }
   const insideParams: IScheduleParams = {
     muted: true,
@@ -51,7 +53,9 @@ export const getDefaultSchedule = (): IVideoSchedule => {
     poster: '',
     height: 1,
     hide: false,
-    isCanvas: false
+    isCanvas: false,
+    translateVideo: false,
+    displayHideVideo: false,
   }
 
   return {
@@ -84,21 +88,24 @@ export const getSchedule = (): IVideoSchedule => {
     }
     if (isQuark || isUC) {
       fullscreenParams.insideFullscreen = true
+      fullscreenParams.displayHideVideo = true
+    }
+    if (isBaidu) {
+      fullscreenParams.translateVideo = true
     }
   } else if (isAndroid) {
     if (isBaidu) {
       fullscreenParams.hideContainer = true
       fullscreenParams.showPoster = true
+      fullscreenParams.displayHideVideo = true
       insideParams.showPoster = true
       insideParams.hideVideo = true
     }
     if (isQuark || isUC) {
       fullscreenParams.hideContainer = true
       fullscreenParams.showPoster = true
+      fullscreenParams.translateVideo = true
     }
-    // if (isWeixin) {
-    //   insideParams.isCanvas = true
-    // }
   }
 
   return {

@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:43:34
- * @LastEditTime: 2023-11-17 10:43:01
+ * @LastEditTime: 2023-12-01 17:16:53
  * @LastEditors: Lu
  * @Description: 
  */
@@ -17,6 +17,8 @@ export interface IScheduleParams {
   orientation?: string
   hideContainer?: boolean
   hideVideo?: boolean
+  translateVideo?: boolean
+  displayHideVideo?: boolean
   insideFullscreen?: boolean
   showPoster?: boolean
   src: string

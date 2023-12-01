@@ -1,12 +1,12 @@
 <!--
  * @Author: Lu
  * @Date: 2023-11-09 16:26:06
- * @LastEditTime: 2023-11-28 11:16:40
+ * @LastEditTime: 2023-12-01 17:38:31
  * @LastEditors: Lu
  * @Description: 
 -->
 <script setup lang="ts">
-import { ref, computed, onMounted, defineExpose } from "vue";
+import { ref, computed, onMounted, defineExpose, nextTick } from "vue";
 import type { PropType } from "vue";
 import { throttle } from "lodash-es";
 import {
@@ -80,6 +80,14 @@ const props = defineProps({
     default: "",
     type: String as PropType<IScheduleParams["mode"]>,
   },
+  translateVideo: {
+    default: false,
+    type: Boolean as PropType<IScheduleParams["translateVideo"]>,
+  },
+  displayHideVideo: {
+    default: false,
+    type: Boolean as PropType<IScheduleParams["displayHideVideo"]>,
+  },
 });
 
 const emit = defineEmits([
@@ -97,6 +105,7 @@ const isAndroidWechat = ref(false);
 const isIosWechat = ref(false);
 const isLoadJDK = ref(false);
 const isInlineFullScreen = ref(false);
+const isFullScreen = ref(false);
 const isIos = ref(false);
 const bindCancelFullScreen = ref(() => {});
 const bindCancelWebkitFullScreen = ref(() => {});
@@ -198,6 +207,7 @@ const pause = () => {
 };
 const cancelFullScreen = () => {
   log("cancelFullScreen", this);
+  isFullScreen.value = false;
   if (!document.fullscreenElement) {
     pause();
     document.removeEventListener(
@@ -308,12 +318,17 @@ const showFullScreen = async () => {
     video.webkitRequestFullscreen,
     video.webkitEnterFullscreen
   );
-  const next = await executeFullScreen(video);
-  if (next) {
-    log("next");
-    video.play();
-    checkFullScreenPlay();
-  }
+  isFullScreen.value = true;
+  nextTick(async () => {
+    const next = await executeFullScreen(video);
+    if (next) {
+      log("next");
+      video.play();
+      checkFullScreenPlay();
+    } else {
+      isFullScreen.value = false;
+    }
+  });
 };
 const checkFullScreenPlay = () => {
   setTimeout(() => {
@@ -331,19 +346,18 @@ const closeFullScreen = () => {
   document.removeEventListener("fullscreenchange", bindCancelFullScreen.value);
   window.removeEventListener("resize", bindCancelWebkitFullScreen.value);
   isInlineFullScreen.value = false;
+  isFullScreen.value = false;
   emit("fullscreenHide");
 };
 
 const playByCanvas = () => {
   const video = refVideo.value;
   const canvas = refCanvas.value;
-  console.log(video, canvas);
   if (!video || !canvas) return;
   const context = canvas.getContext("2d");
 
   // 当视频准备好播放时执行
   video.addEventListener("canplay", function () {
-    console.log("play");
     // 开始绘制视频帧到Canvas
     drawVideo();
     video.play();
@@ -385,14 +399,13 @@ const playByCanvas = () => {
 
   // 监听视频播放事件，以便在播放时执行绘制
   video.addEventListener("play", function () {
-    console.log("play2");
     drawVideo();
   });
 };
 
 onMounted(() => {
   const browserInfo = getBrowserInfo();
-  isIos.value = browserInfo.isIphone;
+  isIos.value = browserInfo.isIos;
   bindTouch.value = throttle(touch.bind(this), 300, {
     trailing: true,
   }) as () => void;
@@ -403,7 +416,7 @@ onMounted(() => {
     log("安卓微信环境");
     isAndroidWechat.value = true;
   }
-  if (browserInfo.isWeixin && browserInfo.isIphone) {
+  if (browserInfo.isWeixin && browserInfo.isIos) {
     log("ios微信环境");
     isIosWechat.value = true;
   }
@@ -469,13 +482,15 @@ defineExpose({
         v-if="isCanvas"
         class="compatibility-video-canvas"
       />
+      <!-- (hideContainer && !isFullScreen) -->
       <video
         v-if="!hideVideo"
         ref="refVideo"
         :class="{
           'compatibility-video-media': true,
-          hide: isCanvas || hideContainer || insideFullscreen,
+          hide: isCanvas || displayHideVideo || insideFullscreen,
           canvas: isCanvas,
+          transformHide: translateVideo,
         }"
         :poster="poster"
         :muted="muted"
@@ -542,7 +557,7 @@ defineExpose({
       top: 50%;
       left: 50%;
       .compatibility-video-media {
-        display: block;
+        display: block !important;
         opacity: 1;
         transform: translate(0, 0);
         width: 100%;
@@ -563,11 +578,14 @@ defineExpose({
     user-select: none;
 
     &.hide {
-      opacity: 0;
-      transform: translate(99999px, 99999px);
       display: none;
-      // width: 1px;
-      // height: 0px;
+    }
+
+    &.transformHide {
+      transform: translateX(-99999px);
+      opacity: 0;
+      position: absolute;
+      left: -9999px;
     }
     &.canvas {
       display: block;
