@@ -1,10 +1,8 @@
-import { fileURLToPath, URL } from "node:url";
-import { defineConfig } from "vite";
-import type { BuildOptions } from "vite";
-import legacy from "@vitejs/plugin-legacy";
-import vue2 from "@vitejs/plugin-vue2";
-import pkg from "./package.json";
+import { BuildOptions, defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import * as pkg from "./package.json";
 import { resolve } from "path";
+import { fileURLToPath, URL } from "node:url";
 
 const isDemo = process.env.type === "demo";
 
@@ -33,15 +31,7 @@ const buildPackageConfig: BuildOptions = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vue2(),
-    isDemo
-      ? legacy({
-          targets: ["ie >= 11"],
-          additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
-        })
-      : undefined,
-  ].filter((v) => v),
+  plugins: [vue()],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
@@ -49,4 +39,4 @@ export default defineConfig({
   },
   base: isDemo ? "/testvideo2" : "",
   build: isDemo ? undefined : buildPackageConfig,
-});
+})

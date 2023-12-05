@@ -6,12 +6,16 @@
     "moduleResolution": "node",
     "strict": true,
     "jsx": "preserve",
-    "sourceMap": false,
+    "sourceMap": true,
     "resolveJsonModule": true,
+    "isolatedModules": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
-    "declaration": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "types": ["node"],
     "outDir": "./lib"
   },
-  "include": ["src/**/*.ts", "src/**/*.vue", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts"]
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "packages/**/*"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

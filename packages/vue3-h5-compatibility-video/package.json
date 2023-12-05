@@ -1,0 +1,41 @@
+{
+  "name": "vue3-h5-compatibility-video",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 3001",
+    "build": "npm run build-only && npm run vue-tsc",
+    "build:demo": "cross-env type=demo run-p type-check build-only",
+    "preview": "vite preview --port 4173",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --noEmit",
+    "vue-tsc": "vue-tsc --declaration --emitDeclarationOnly packages/*"
+  },
+  "type": "module",
+  "files": [
+    "lib"
+  ],
+  "main": "./lib/index.cjs",
+  "module": "./lib/index.es.js",
+  "exports": {
+    ".": {
+      "import": "./lib/index.es.js",
+      "require": "./lib/index.cjs"
+    }
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.11",
+    "@types/node": "^16.11.45",
+    "@vitejs/plugin-vue": "^2.3.4",
+    "add": "^2.0.6",
+    "cross-env": "^7.0.3",
+    "lodash-es": "^4.17.21",
+    "sass": "^1.69.5",
+    "typescript": "5.2.2",
+    "vite": "^2.9.15",
+    "vue": "^3.2.25",
+    "vue-router": "4.2.5",
+    "vue-tsc": "^1.8.24",
+    "vue2-h5-compatibility-video-common": "workspace:^0.1.8"
+  }
+}
