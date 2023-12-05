@@ -1,0 +1,15 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "include": ["packages/**/*"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "types": ["vite/client"],
+    "allowJs": true,
+    "outDir": "./lib"
+  },
+  "references": [
+    {
+      "path": "./tsconfig.config.json"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:22:09
- * @LastEditTime: 2023-12-01 17:17:12
+ * @LastEditTime: 2023-12-05 11:42:39
  * @LastEditors: Lu
  * @Description:
  */
@@ -11,12 +11,12 @@ import {
   getSchedule,
   getEmitter,
   getBrowserInfo,
+  CustomVideo,
 } from "vue2-h5-compatibility-video-common";
 import type {
   IScheduleParams,
   TGetWrapperComponents,
 } from "vue2-h5-compatibility-video-common";
-import CustomVideo from "./CustomVideo.vue";
 import type { CreateElement } from "vue";
 
 const getProps = (schedule: IScheduleParams) => ({
@@ -70,6 +70,7 @@ export const getVideoComponents: TGetWrapperComponents = (
       props: getProps(schedule.insideParams),
       render: (h: CreateElement, context: any) => {
         return h(
+          // @ts-ignore
           CustomVideo,
           {
             ...context.data,
@@ -84,6 +85,7 @@ export const getVideoComponents: TGetWrapperComponents = (
       props: getProps(schedule.fullscreenParams),
       render: (h: CreateElement, context: any) => {
         return h(
+          // @ts-ignore
           CustomVideo,
           {
             ...context.data,

@@ -1,7 +1,7 @@
 <!--
  * @Author: Lu
  * @Date: 2023-12-05 10:31:54
- * @LastEditTime: 2023-12-05 10:59:29
+ * @LastEditTime: 2023-12-05 11:34:24
  * @LastEditors: Lu
  * @Description: 
 -->
@@ -453,9 +453,9 @@ defineExpose({
     :style="{
       height: `${height}px`,
     }"
-    @click="(e: MouseEvent) => emitCommonEvent(e, 'click')"
-    @touchstart="(e: TouchEvent) => emitCommonEvent(e, 'touchstart')"
-    @touchend="(e: TouchEvent) => emitCommonEvent(e, 'touchend')"
+    @click="(e) => emitCommonEvent(e, 'click')"
+    @touchstart="(e) => emitCommonEvent(e, 'touchstart')"
+    @touchend="(e) => emitCommonEvent(e, 'touchend')"
   >
     <div
       class="compatibility-video-close"

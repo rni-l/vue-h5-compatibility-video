@@ -9,7 +9,7 @@
     "preview": "vite preview --port 4173",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
-    "vue-tsc": "vue-tsc --declaration --emitDeclarationOnly packages/*"
+    "vue-tsc": "vue-tsc -p tsconfig.build.json --declaration --emitDeclarationOnly "
   },
   "type": "module",
   "files": [
