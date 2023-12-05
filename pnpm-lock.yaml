@@ -21,9 +21,6 @@ importers:
       typescript: ^5.2.2
       vue: 2.7.7
       vue-tsc: ^1.8.24
-    dependencies:
-      mitt: 3.0.1
-      typescript: 5.2.2
     devDependencies:
       '@types/lodash-es': 4.17.11
       '@typescript-eslint/eslint-plugin': 6.10.0_u434aypout3c3z2ybwpl5ggmim
@@ -32,6 +29,8 @@ importers:
       cross-env: 7.0.3
       eslint: 8.53.0
       lodash-es: 4.17.21
+      mitt: 3.0.1
+      typescript: 5.2.2
       vue: 2.7.7
       vue-tsc: 1.8.24_typescript@5.2.2
 
@@ -58,7 +57,7 @@ importers:
       vue: ^2.7.7
       vue-router: 3.6.5
       vue-tsc: ^1.8.24
-      vue2-h5-compatibility-video-common: workspace:^0.1.8
+      vue2-h5-compatibility-video-common: workspace:^0.1.9
     devDependencies:
       '@rushstack/eslint-patch': 1.5.1
       '@types/lodash-es': 4.17.11
@@ -97,7 +96,7 @@ importers:
       vue: ^3.2.25
       vue-router: 4.2.5
       vue-tsc: ^1.8.24
-      vue2-h5-compatibility-video-common: workspace:^0.1.8
+      vue2-h5-compatibility-video-common: workspace:^0.1.9
     devDependencies:
       '@types/lodash-es': 4.17.11
       '@types/node': 16.18.61
@@ -4469,7 +4468,7 @@ packages:
 
   /mitt/3.0.1:
     resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
-    dev: false
+    dev: true
 
   /mkdirp/1.0.4:
     resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
@@ -6100,6 +6099,7 @@ packages:
     resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
     engines: {node: '>=14.17'}
     hasBin: true
+    dev: true
 
   /uglify-js/3.17.4:
     resolution: {integrity: sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==}

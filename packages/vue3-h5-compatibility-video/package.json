@@ -1,7 +1,7 @@
 {
   "name": "vue3-h5-compatibility-video",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.9",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 3001",
     "build": "npm run build-only && npm run vue-tsc",
@@ -36,6 +36,6 @@
     "vue": "^3.2.25",
     "vue-router": "4.2.5",
     "vue-tsc": "^1.8.24",
-    "vue2-h5-compatibility-video-common": "workspace:^0.1.8"
+    "vue2-h5-compatibility-video-common": "workspace:^0.1.9"
   }
 }
