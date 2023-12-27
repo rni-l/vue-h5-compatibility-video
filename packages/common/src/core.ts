@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:41:06
- * @LastEditTime: 2023-12-01 17:36:30
+ * @LastEditTime: 2023-12-20 09:50:22
  * @LastEditors: Lu
  * @Description: 
  */
@@ -24,6 +24,7 @@ export const getDefaultSchedule = (): IVideoSchedule => {
     hideContainer: false,
     hideVideo: false,
     insideFullscreen: false,
+    playBeforeFullscreen: false,
     showPoster: false,
     src: '',
     mode: 'fullscreen',
@@ -47,6 +48,7 @@ export const getDefaultSchedule = (): IVideoSchedule => {
     hideContainer: false,
     hideVideo: false,
     insideFullscreen: false,
+    playBeforeFullscreen: false,
     showPoster: false,
     src: '',
     mode: 'inside',
@@ -72,6 +74,7 @@ export const getSchedule = (): IVideoSchedule => {
     isBaidu,
     isQuark,
     isUC,
+    isQQ
   } = getBrowserInfo()
   log('getBrowserInfo', getBrowserInfo());
   const {
@@ -105,6 +108,10 @@ export const getSchedule = (): IVideoSchedule => {
       fullscreenParams.hideContainer = true
       fullscreenParams.showPoster = true
       fullscreenParams.translateVideo = true
+    }
+    if (isQQ) {
+      console.log('is qq', true);
+      fullscreenParams.playBeforeFullscreen = true
     }
   }
 

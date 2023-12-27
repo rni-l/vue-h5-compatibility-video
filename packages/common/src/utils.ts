@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:41:14
- * @LastEditTime: 2023-12-01 17:31:49
+ * @LastEditTime: 2023-12-20 09:44:32
  * @LastEditors: Lu
  * @Description: 
  */
@@ -11,7 +11,7 @@ let isLog = false
 
 export const setLog = (val: boolean) => isLog = val
 
-export const log = (...args: unknown[]) => isLog ? console.log(...args) : undefined;
+export const log = (...args: unknown[]) => isLog ? window['console'].log(...args) : undefined;
 
 export const getEmitter = () => emitter
 
@@ -24,6 +24,7 @@ export const getBrowserInfo = () => ({
   isPhone: Boolean(/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)),
   isBaidu: (navigator.userAgent.includes('baiduboxapp') || navigator.userAgent.includes('Baidu')),
   isQuark: navigator.userAgent.includes('Quark'),
-  isUC: navigator.userAgent.includes('UCBrowser')
+  isUC: navigator.userAgent.includes('UCBrowser'),
+  isQQ: navigator.userAgent.includes('MQQBrowser')
 })
 

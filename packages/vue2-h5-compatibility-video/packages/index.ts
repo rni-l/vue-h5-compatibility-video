@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:22:09
- * @LastEditTime: 2023-12-05 11:42:39
+ * @LastEditTime: 2023-12-27 15:56:03
  * @LastEditors: Lu
  * @Description:
  */
@@ -11,13 +11,13 @@ import {
   getSchedule,
   getEmitter,
   getBrowserInfo,
-  CustomVideo,
 } from "vue2-h5-compatibility-video-common";
 import type {
   IScheduleParams,
   TGetWrapperComponents,
 } from "vue2-h5-compatibility-video-common";
 import type { CreateElement } from "vue";
+import CustomVideo from "./CustomVideo.vue";
 
 const getProps = (schedule: IScheduleParams) => ({
   muted: { default: schedule.muted },
@@ -38,6 +38,7 @@ const getProps = (schedule: IScheduleParams) => ({
   insideFullscreen: {
     default: schedule.insideFullscreen,
   },
+  playBeforeFullscreen: { default: schedule.playBeforeFullscreen },
   showPoster: { default: schedule.showPoster },
   isCanvas: { default: schedule.isCanvas },
   hide: { default: schedule.hide },
@@ -69,6 +70,7 @@ export const getVideoComponents: TGetWrapperComponents = (
       functional: true,
       props: getProps(schedule.insideParams),
       render: (h: CreateElement, context: any) => {
+        console.log(context.props);
         return h(
           // @ts-ignore
           CustomVideo,

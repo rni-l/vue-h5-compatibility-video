@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-14 11:19:23
- * @LastEditTime: 2023-11-27 17:37:33
+ * @LastEditTime: 2023-12-11 11:12:12
  * @LastEditors: Lu
  * @Description:
  */
@@ -22,6 +22,10 @@ export const router = new VueRouter({
     {
       path: "/p3",
       component: () => import("./pages/p3.vue"),
+    },
+    {
+      path: "/p4",
+      component: () => import("./pages/p4.vue"),
     },
   ],
 });

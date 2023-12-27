@@ -1,6 +1,5 @@
 {
   "name": "vue3-h5-compatibility-video",
-  "private": true,
   "version": "0.1.9",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 3001",
@@ -37,5 +36,15 @@
     "vue-router": "4.2.5",
     "vue-tsc": "^1.8.24",
     "vue2-h5-compatibility-video-common": "workspace:^0.1.9"
-  }
+  },
+  "author": "rni-l",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rni-l/vue-h5-compatibility-video.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rni-l/vue-h5-compatibility-video/issues"
+  },
+  "homepage": "https://github.com/rni-l/vue-h5-compatibility-video#readme"
 }

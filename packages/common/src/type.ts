@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:43:34
- * @LastEditTime: 2023-12-01 17:16:53
+ * @LastEditTime: 2023-12-27 17:07:22
  * @LastEditors: Lu
  * @Description: 
  */
@@ -20,6 +20,7 @@ export interface IScheduleParams {
   translateVideo?: boolean
   displayHideVideo?: boolean
   insideFullscreen?: boolean
+  playBeforeFullscreen?: boolean
   showPoster?: boolean
   src: string
   mode: 'inside' | 'fullscreen'
@@ -53,4 +54,17 @@ export type TGetWrapperComponents = (schedule?: IVideoSchedule) => ({
 export type TWrapperVideoElement = HTMLVideoElement & {
   webkitRequestFullscreen: () => void
   webkitEnterFullscreen: () => void
+}
+
+export type TVideoFullScreenParams = {
+  pause: () => void
+  showError: () => void
+  emitHide: () => void
+}
+
+export type THtmlVideoElement = HTMLVideoElement & {
+  webkitRequestFullscreen?: () => void
+  webkitEnterFullscreen?: () => void
+  webkitExitFullscreen?: () => void
+  webkitExitFullScreen?: () => void
 }
