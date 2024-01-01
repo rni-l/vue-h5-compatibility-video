@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:41:14
- * @LastEditTime: 2024-01-02 00:23:22
+ * @LastEditTime: 2024-01-02 00:51:24
  * @LastEditors: Lu
  * @Description: 
  */
@@ -19,7 +19,7 @@ export const getBrowserInfo = () => ({
   isAndroid: Boolean(navigator.userAgent.match(/android/ig)),
   isIpad: Boolean(navigator.userAgent.match(/ipad/ig)),
   isIos: Boolean(navigator.userAgent.match(/ipad|iphone/ig)),
-  isSafari: /CriOS/i.test(navigator.userAgent) && /iphone|ipod|ipad/i.test(navigator.userAgent),
+  isSafari: (/CriOS/i.test(navigator.userAgent) && /iphone|ipod|ipad/i.test(navigator.userAgent)) || /Safari/i.test(navigator.userAgent),
   isWeixin: Boolean(navigator.userAgent.match(/MicroMessenger/ig)),
   isAli: Boolean(navigator.userAgent.match(/AlipayClient/ig)),
   isPhone: Boolean(/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)),

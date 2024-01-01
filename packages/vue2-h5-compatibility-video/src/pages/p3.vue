@@ -1,7 +1,7 @@
 <!--
  * @Author: Lu
  * @Date: 2023-11-27 17:37:03
- * @LastEditTime: 2024-01-02 00:18:43
+ * @LastEditTime: 2024-01-02 00:56:22
  * @LastEditors: Lu
  * @Description: 
 -->
@@ -27,8 +27,9 @@
       :src="videoUrl"
       :poster="poster"
       :autoplay="false"
-      :height="250"
+      :height="1000"
       :muted="false"
+      @click="go"
     />
 
     <div class="t1">{{ t2 }}</div>
@@ -55,6 +56,7 @@
 import flowerMp4 from "../flower.mp4";
 import oceansMp4 from "../oceans.mp4";
 import poster from "../14fe13730673ea1a8fb06d77897eaa193d4cc60715d8e-GlLzcK_fw658.jpeg";
+import { getBrowserInfo } from "../../packages";
 export default {
   name: "PageP3",
 
@@ -73,7 +75,12 @@ export default {
 
   methods: {
     go() {
-      this.$refs.refVideo.showFullScreen();
+      console.log("click");
+      const { isWeixin, isSafari } = getBrowserInfo();
+      console.log(isWeixin, isSafari);
+      if (!isWeixin && !isSafari) {
+        this.$refs.refVideo.showFullScreen();
+      }
     },
   },
 };
