@@ -13,5 +13,7 @@ module.exports = {
     "@typescript-eslint/ban-types": 0,
     "@typescript-eslint/no-empty-function": 0,
     "@typescript-eslint/ban-ts-comment": 0,
+    "vue/no-duplicate-attributes": 0,
+    "vue/no-parsing-error": 0,
   },
 };

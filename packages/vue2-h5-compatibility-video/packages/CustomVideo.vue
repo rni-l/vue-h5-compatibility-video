@@ -1,7 +1,7 @@
 <!--
  * @Author: Lu
  * @Date: 2023-12-14 22:32:22
- * @LastEditTime: 2023-12-27 17:05:33
+ * @LastEditTime: 2024-01-02 00:26:03
  * @LastEditors: Lu
  * @Description: 
 -->
@@ -164,6 +164,7 @@ const showFullScreen = async () => {
     log("video play");
     return;
   }
+  classVideoFullScreen.video = video;
   log(
     video.requestFullscreen,
     video.webkitRequestFullscreen,
@@ -243,9 +244,10 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  log("onUnmounted", refVideo.value);
+  log("before onUnmounted");
   classVideoFullScreen.removeExitFullScreenEvent();
   classVideoFullScreen.exitFullScreen(refVideo.value);
+  classVideoFullScreen.destroyVideo();
 });
 
 defineExpose({
@@ -313,7 +315,11 @@ defineExpose({
         :x-video-orientation="orientation"
         :playsinline="playsinline"
         :webkit-playsinline="playsinline"
+        :webkitPresentationMode="
+          mode === 'fullscreen' ? 'fullscreen' : 'inline'
+        "
         :x-webkit-airplay="true"
+        :controls="controls"
         @canplay="handleCanPlay"
         @ended="handleVideoEnded"
         @touchstart="touch"

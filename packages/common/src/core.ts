@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:41:06
- * @LastEditTime: 2023-12-20 09:50:22
+ * @LastEditTime: 2024-01-02 00:23:43
  * @LastEditors: Lu
  * @Description: 
  */
@@ -74,7 +74,9 @@ export const getSchedule = (): IVideoSchedule => {
     isBaidu,
     isQuark,
     isUC,
-    isQQ
+    isQQ,
+    isWeixin,
+    isSafari,
   } = getBrowserInfo()
   log('getBrowserInfo', getBrowserInfo());
   const {
@@ -96,6 +98,11 @@ export const getSchedule = (): IVideoSchedule => {
     if (isBaidu) {
       fullscreenParams.translateVideo = true
     }
+    if (isWeixin || isSafari) {
+      fullscreenParams.playsinline = false
+      fullscreenParams.controls = true
+    }
+
   } else if (isAndroid) {
     if (isBaidu) {
       fullscreenParams.hideContainer = true

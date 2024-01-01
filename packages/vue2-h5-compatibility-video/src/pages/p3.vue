@@ -1,7 +1,7 @@
 <!--
  * @Author: Lu
  * @Date: 2023-11-27 17:37:03
- * @LastEditTime: 2023-12-05 17:31:00
+ * @LastEditTime: 2024-01-02 00:18:43
  * @LastEditors: Lu
  * @Description: 
 -->
@@ -28,6 +28,7 @@
       :poster="poster"
       :autoplay="false"
       :height="250"
+      :muted="false"
     />
 
     <div class="t1">{{ t2 }}</div>
@@ -52,6 +53,7 @@
 
 <script>
 import flowerMp4 from "../flower.mp4";
+import oceansMp4 from "../oceans.mp4";
 import poster from "../14fe13730673ea1a8fb06d77897eaa193d4cc60715d8e-GlLzcK_fw658.jpeg";
 export default {
   name: "PageP3",
@@ -59,7 +61,8 @@ export default {
   data() {
     return {
       poster,
-      videoUrl: flowerMp4,
+      // videoUrl: flowerMp4,
+      videoUrl: oceansMp4,
       t0: "4Deeersdf",
       t1: "Deeer",
       t2: "Dee",

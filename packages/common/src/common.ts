@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-12-15 00:23:44
- * @LastEditTime: 2024-01-01 00:54:06
+ * @LastEditTime: 2024-01-01 23:35:12
  * @LastEditors: Lu
  * @Description: 
  */
@@ -92,6 +92,8 @@ export class VideoFullScreen {
   showError: TVideoFullScreenParams['showError']
   emitHide: TVideoFullScreenParams['emitHide']
 
+  video?: THtmlVideoElement
+
   bindCancelFullScreen: () => void = () => {}
   bindCancelWebkitFullScreen: () => void = () => {}
 
@@ -104,11 +106,18 @@ export class VideoFullScreen {
   }
 
   removeEventListener() {
+    log('removeEventListener')
     document.removeEventListener(
       "fullscreenchange",
       this.bindCancelFullScreen
     );
+    document.removeEventListener("webkitfullscreenchange", this.bindCancelFullScreen);
     window.removeEventListener("resize", this.bindCancelWebkitFullScreen);
+    const video = this.video
+    if (!video) return
+    video.removeEventListener("fullscreenchange", this.bindCancelFullScreen);
+    video.removeEventListener("webkitfullscreenchange", this.bindCancelFullScreen);
+    video.removeEventListener("webkitendfullscreen", this.bindCancelFullScreen);
   }
 
   removeExitFullScreenEvent() {
@@ -118,6 +127,9 @@ export class VideoFullScreen {
       );
       return;
     } else {
+      if (this.video) {
+        this.exitFullScreen(this.video)
+      }
       log("Leaving fullscreen mode.");
     }
     this.pause();
@@ -132,9 +144,14 @@ export class VideoFullScreen {
     log("cancelWebkitFullScreen");
     this.removeExitFullScreenEvent();
   }
-  addExitFullScreenEvent() {
+  addExitFullScreenEvent(video: THtmlVideoElement) {
     document.addEventListener("fullscreenchange", this.bindCancelFullScreen);
+    video.addEventListener("fullscreenchange", this.bindCancelFullScreen);
+    document.addEventListener("webkitfullscreenchange", this.bindCancelFullScreen);
+    video.addEventListener("webkitfullscreenchange", this.bindCancelFullScreen);
+    video.addEventListener("webkitendfullscreen", this.bindCancelFullScreen);
     window.addEventListener("resize", this.bindCancelWebkitFullScreen);
+    log('addExitFullScreenEvent')
   }
   async useFullScreen(video: THtmlVideoElement) {
     if (video.requestFullscreen) {
@@ -142,7 +159,7 @@ export class VideoFullScreen {
       try {
         log('useFullScreen');
         video.requestFullscreen()
-        this.addExitFullScreenEvent();
+        this.addExitFullScreenEvent(video);
         return true
       } catch (e) {
         log(e);
@@ -157,7 +174,7 @@ export class VideoFullScreen {
       try {
         log('useWebkitFullScreen');
         video.webkitRequestFullscreen();
-        this.addExitFullScreenEvent();
+        this.addExitFullScreenEvent(video);
         return true
       } catch (e: unknown) {
         log(e);
@@ -172,7 +189,7 @@ export class VideoFullScreen {
       try {
         log('webkitEnterFullscreen');
         video.webkitEnterFullscreen();
-        this.addExitFullScreenEvent();
+        this.addExitFullScreenEvent(video);
         return true
       } catch (e: unknown) {
         log(e);
@@ -210,18 +227,16 @@ export class VideoFullScreen {
 
   checkIsFullScreen() {
     // @ts-ignore
-    return document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled
+    // return document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled
+    return document.fullscreenElement || document.webkitFullscreenElement
   }
 
   exitFullScreen(video?: THtmlVideoElement) {
-    // if (!this.checkIsFullScreen()) return
-    // @ts-ignore
-    // console.log(document.webkitExitFullscreen, document.exitFullscreen, document.mozCancelFullScreen, video?.webkitExitFullScreen, video?.webkitExitFullscreen);
-    // @ts-ignore
-    // console.log('webkitDisplayingFullscreen', video?.webkitDisplayingFullscreen);
+    log('exitFullScreen', video);
     try {
       if (video && video.webkitExitFullscreen) return video.webkitExitFullscreen()
-      if (video && video.webkitExitFullScreen) return video.webkitExitFullScreen()
+      // @ts-ignore
+      if (video && video.exitFullscreen) return video.exitFullscreen()
       // @ts-ignore
       if (document.webkitExitFullscreen) return  document.webkitExitFullscreen()
       if (document.exitFullscreen) return  document.exitFullscreen()
@@ -229,6 +244,21 @@ export class VideoFullScreen {
       if (document.mozCancelFullScreen) return  document.mozCancelFullScreen()
     } catch(e) {
       log('exit fullscreen error', e)
+    }
+  }
+
+  destroyVideo(video?: THtmlVideoElement) {
+    const target = video || this.video
+    if (target) {
+      const source = target.querySelector('source')
+      if (source) {
+        log('remove source')
+        source.removeAttribute('src')
+        target.removeChild(source)
+      }
+      log('destroyVideo')
+      target.pause()
+      target.load()
     }
   }
 }

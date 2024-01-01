@@ -1,7 +1,7 @@
 <!--
  * @Author: Lu
  * @Date: 2023-11-14 11:20:40
- * @LastEditTime: 2023-12-31 23:07:53
+ * @LastEditTime: 2024-01-01 23:50:23
  * @LastEditors: Lu
  * @Description: 
 -->
@@ -14,20 +14,20 @@
         muted
         style="width: 100%; height: 300px"
       /> -->
-      <!-- <InsideVideo
-        :src="videoUrl"
-        :poster="poster"
-        :height="400"
-        :loop="false"
-        :autoplay="true"
-      /> -->
-      <DVideo
+      <InsideVideo
         :src="videoUrl"
         :poster="poster"
         :height="400"
         :loop="false"
         :autoplay="true"
       />
+      <!-- <DVideo
+        :src="videoUrl"
+        :poster="poster"
+        :height="400"
+        :loop="false"
+        :autoplay="true"
+      /> -->
       <div class="txt">sdfsdf</div>
     </div>
     <div>
