@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:41:14
- * @LastEditTime: 2024-01-02 10:39:49
+ * @LastEditTime: 2024-01-02 10:43:11
  * @LastEditors: Lu
  * @Description: 
  */
@@ -26,7 +26,8 @@ export const getBrowserInfo = () => {
     isBaidu: (navigator.userAgent.includes('baiduboxapp') || navigator.userAgent.includes('Baidu')),
     isQuark: navigator.userAgent.includes('Quark'),
     isUC: navigator.userAgent.includes('UCBrowser'),
-    isQQ: navigator.userAgent.includes('MQQBrowser')
+    isQQ: navigator.userAgent.includes('MQQBrowser'),
+    isLark: /LarkLocale/.test(navigator.userAgent),
   }
   return {
     ...obj,

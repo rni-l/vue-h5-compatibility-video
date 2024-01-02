@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:41:06
- * @LastEditTime: 2024-01-02 00:23:43
+ * @LastEditTime: 2024-01-02 10:59:29
  * @LastEditors: Lu
  * @Description: 
  */
@@ -112,9 +112,11 @@ export const getSchedule = (): IVideoSchedule => {
       insideParams.hideVideo = true
     }
     if (isQuark || isUC) {
-      fullscreenParams.hideContainer = true
-      fullscreenParams.showPoster = true
-      fullscreenParams.translateVideo = true
+      // fullscreenParams.hideContainer = true
+      // fullscreenParams.showPoster = true
+      // fullscreenParams.translateVideo = true
+      fullscreenParams.insideFullscreen = true
+      fullscreenParams.displayHideVideo = true
     }
     if (isQQ) {
       console.log('is qq', true);
