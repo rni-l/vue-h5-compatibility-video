@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:41:06
- * @LastEditTime: 2024-01-02 10:59:29
+ * @LastEditTime: 2024-01-02 11:05:41
  * @LastEditors: Lu
  * @Description: 
  */
@@ -117,6 +117,9 @@ export const getSchedule = (): IVideoSchedule => {
       // fullscreenParams.translateVideo = true
       fullscreenParams.insideFullscreen = true
       fullscreenParams.displayHideVideo = true
+      fullscreenParams.hideContainer = true
+      fullscreenParams.showPoster = true
+      fullscreenParams.playsinline = false
     }
     if (isQQ) {
       console.log('is qq', true);
