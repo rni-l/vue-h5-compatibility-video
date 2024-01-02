@@ -1,6 +1,6 @@
 {
   "name": "vue3-h5-compatibility-video",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 3001",
     "build": "npm run build-only && npm run vue-tsc",
