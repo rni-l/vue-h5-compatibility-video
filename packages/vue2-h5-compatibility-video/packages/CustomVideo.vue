@@ -1,7 +1,7 @@
 <!--
  * @Author: Lu
  * @Date: 2023-12-14 22:32:22
- * @LastEditTime: 2024-01-02 00:26:03
+ * @LastEditTime: 2024-01-02 09:56:57
  * @LastEditors: Lu
  * @Description: 
 -->
@@ -118,7 +118,7 @@ const handleVideoEnded = () => {
 };
 
 const touch = (e?: Event) => {
-  cancelEvent(e);
+  // cancelEvent(e);
   const stopNext =
     props.hideVideo ||
     props.showPoster ||
@@ -325,7 +325,6 @@ defineExpose({
         @touchstart="touch"
         @touchend="touch"
         @error="handleError"
-        @touchmove="cancelEvent"
       >
         <source :src="src" type="video/mp4" />
       </video>
