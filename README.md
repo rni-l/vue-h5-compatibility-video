@@ -1,6 +1,6 @@
 # vue-h5-compatibility-video
 
-> 使用 vue 封装 Video 的组件，用于处理 video 在移动端兼容性的问题。组件内部已经包含了根据浏览器去添加视频兼容性的配置。
+> 使用 vue 封装 Video 的组件，处理 video 在移动端兼容性的问题。组件内部已经包含了根据浏览器去添加视频兼容性的配置。
 
 ## 快速上手
 
@@ -23,12 +23,16 @@ Vue.component("InsideVideo", InsideVideo);
 Vue.component("FullscreenVideo", FullscreenVideo);
 ```
 
-### 使用
-
 使用内联视频：
 
 ```html
-<inside-video :src="url" :height="height" :poster="poster" :autoplay="true" :loop="true" />
+<inside-video
+  :src="url"
+  :height="height"
+  :poster="poster"
+  :autoplay="true"
+  :loop="true"
+/>
 ```
 
 使用全屏视频：
@@ -38,7 +42,6 @@ Vue.component("FullscreenVideo", FullscreenVideo);
   :src="url"
   :height="height"
   :poster="poster"
-  orientation="landscape"
   @click="show"
   ref="refFullscreenVideo"
 />
@@ -50,6 +53,74 @@ const show = () => {
 }
 </script>
 ```
+
+添加全局点击事件：
+
+```javascript
+import { getEmitter } from 'vue2-h5-compatibility-video'
+// 当页面触发点击时，调用下面的方法，这样会通知视频组件播放
+getEmitter().emit("docTouch")
+```
+
+### Vue@3
+
+```shell
+# 添加依赖
+npm i vue3-h5-compatibility-video
+```
+
+引入：
+
+```javascript
+import Vue from "vue";
+import { getVideoComponents } from 'vue3-h5-compatibility-video'
+import 'vue3-h5-compatibility-video/lib/style.css'
+
+const { InsideVideo, FullscreenVideo } = getVideoComponents();
+Vue.component("InsideVideo", InsideVideo);
+Vue.component("FullscreenVideo", FullscreenVideo);
+```
+
+
+使用内联视频：
+
+```html
+<inside-video
+  :src="url"
+  :height="height"
+  :poster="poster"
+  :autoplay="true"
+  :loop="true"
+/>
+```
+
+使用全屏视频：
+
+```html
+<fullscreen-video
+  :src="url"
+  :height="height"
+  :poster="poster"
+  @click="show"
+  ref="refFullscreenVideo"
+/>
+
+<script>
+const refFullscreenVideo = ref()
+const show = () => {
+  refFullscreenVideo.value?.showFullScreen()
+}
+</script>
+```
+
+添加全局点击事件：
+
+```javascript
+import { getEmitter } from 'vue3-h5-compatibility-video'
+// 当页面触发点击时，调用下面的方法，这样会通知视频组件播放
+getEmitter().emit("docTouch")
+```
+
 
 ### 自定义组件默认属性
 
@@ -75,30 +146,7 @@ Vue.component("FullscreenVideo", FullscreenVideo);
 
 通过这种方式可以修改默认的组件属性
 
-### 通知组件触发 `play` 
 
-```vue
-<template>
-  <div id="app" @touchstart="touch" @touchmove="touch">
-    <div class="app-header">
-      <router-link to="/p1">p1</router-link>
-      <router-link to="/p2">p2</router-link>
-    </div>
-    <router-view />
-  </div>
-</template>
-<script lang="ts" setup>
-import { throttle } from "lodash-es";
-import { getEmitter } from "vue2-h5-compatibility-video";
-
-const touch = throttle(() => getEmitter().emit("docTouch"), 900, {
-  trailing: true,
-  leading: true,
-});
-</script>
-```
-
-安卓设备是不支持视频自动播放的，我这边通过当用户触摸设备时，通知各个 video 组件执行 `play`  方法
 
 ## 属性
 
