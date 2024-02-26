@@ -1,6 +1,6 @@
 {
   "name": "vue2-h5-compatibility-video",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "npm run build-only && npm run vue-tsc",
