@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:22:09
- * @LastEditTime: 2023-12-27 15:56:03
+ * @LastEditTime: 2024-02-26 11:12:51
  * @LastEditors: Lu
  * @Description:
  */
@@ -11,6 +11,7 @@ import {
   getSchedule,
   getEmitter,
   getBrowserInfo,
+  setLog,
 } from "vue2-h5-compatibility-video-common";
 import type {
   IScheduleParams,
@@ -100,4 +101,4 @@ export const getVideoComponents: TGetWrapperComponents = (
   };
 };
 
-export { getEmitter, getBrowserInfo, getDefaultSchedule };
+export { getEmitter, getBrowserInfo, getDefaultSchedule, setLog };

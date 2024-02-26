@@ -1,7 +1,7 @@
 <!--
  * @Author: Lu
  * @Date: 2023-11-09 16:26:06
- * @LastEditTime: 2024-01-02 09:57:26
+ * @LastEditTime: 2024-02-26 11:21:16
  * @LastEditors: Lu
  * @Description: 
 -->
@@ -17,7 +17,6 @@ import {
 } from "vue2-h5-compatibility-video-common";
 import type {
   IScheduleParams,
-  TWrapperVideoElement,
 } from "vue2-h5-compatibility-video-common";
 const props = defineProps({
   hide: {
@@ -280,7 +279,7 @@ const cancelEvent = (e?: Event) => {
 };
 
 onMounted(() => {
-  log("onMounted");
+  log("onMounted 123");
   const browserInfo = getBrowserInfo();
   isIos.value = browserInfo.isIos;
   bindTouch.value = throttle(touch.bind(this), 300, {

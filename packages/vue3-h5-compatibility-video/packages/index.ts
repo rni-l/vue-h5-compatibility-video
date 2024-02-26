@@ -1,7 +1,7 @@
 /*
  * @Author: Lu
  * @Date: 2023-11-09 16:22:09
- * @LastEditTime: 2023-12-05 10:54:42
+ * @LastEditTime: 2024-02-26 11:20:39
  * @LastEditors: Lu
  * @Description:
  */
@@ -11,16 +11,15 @@ import {
   getSchedule,
   getEmitter,
   getBrowserInfo,
-  CustomVideo,
+  setLog
 } from "vue2-h5-compatibility-video-common";
 import type {
   IScheduleParams,
-  IVideoSchedule,
   TGetWrapperComponents,
 } from "vue2-h5-compatibility-video-common";
 import type { ExtractPropTypes, SetupContext } from 'vue'
+import  CustomVideo from './CustomVideo.vue'
 import { h, ref } from 'vue'
-
 
 const getProps = (schedule: IScheduleParams) => ({
   muted: { default: schedule.muted },
@@ -41,6 +40,7 @@ const getProps = (schedule: IScheduleParams) => ({
   insideFullscreen: {
     default: schedule.insideFullscreen,
   },
+  playBeforeFullscreen: { default: schedule.playBeforeFullscreen },
   showPoster: { default: schedule.showPoster },
   isCanvas: { default: schedule.isCanvas },
   hide: { default: schedule.hide },
@@ -72,6 +72,7 @@ type TEmits = [ 'fullscreenHide',
 ]
 
 const getCom = (params: IScheduleParams) => {
+  console.log('getCom', params);
   return {
     props: getProps(params),
     setup(props: ExtractPropTypes<ReturnType<typeof getProps>>, context: SetupContext<TEmits>) {
@@ -105,4 +106,4 @@ export const getVideoComponents: TGetWrapperComponents = (
   };
 };
 
-export { getEmitter, getBrowserInfo, getDefaultSchedule };
+export { getEmitter, getBrowserInfo, getDefaultSchedule, setLog };
