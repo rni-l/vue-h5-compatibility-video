@@ -20,7 +20,8 @@
     ".": {
       "import": "./lib/index.es.js",
       "require": "./lib/index.cjs"
-    }
+    },
+    "./lib/style.css": "./lib/style.css"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.11",
